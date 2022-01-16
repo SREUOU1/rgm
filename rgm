@@ -1,0 +1,17 @@
+local plr = game:service'Players'.LocalPlayer
+game.Workspace.Live[plr.Name].Parent = game.Workspace.Effects
+wait()
+local args1 = game:GetService("Workspace").FriendlyNPCs["Hair Stylist"]
+game:GetService("Players").LocalPlayer.Backpack.ServerTraits.ChatStart:FireServer(args1)
+wait(0.30)
+local args = {
+    [1] = {
+        [1] = "Yes",
+    },
+}
+game:GetService("Players").LocalPlayer.Backpack.ServerTraits.ChatAdvance:FireServer(unpack(args))
+
+game:GetService("RunService").RenderStepped:connect(function()
+    game:GetService("Players").LocalPlayer.PlayerGui.Setup.Enabled = false
+    game:GetService("Players").LocalPlayer.Backpack.HairScript.RemoteEvent:FireServer(game:GetService("Players").LocalPlayer.PlayerGui.Setup.Frame.Side.HairColor,"up")
+end)
